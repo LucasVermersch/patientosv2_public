@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier patient{% endblock %}
+
+{% block body %}
+    {% if app.user %}
+
+
+        {{ form_start(patientForm) }}
+        <form action=""  method="post">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6  ">
+                    <h1 class="titre">HOPITAL LILLE</h1>
+                    <div class="card p-3">
+                        {{ form_row(patientForm.Email, {'attr': {'class': 'form-control'}}, {'fa' : 'fa-long-arrow-right'}) }}
+                        {{ form_row(patientForm.Nom, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_row(patientForm.Prenom, {'attr': {'class': 'form-control'}}, {'fa' : 'fa-long-arrow-right'}) }}
+                        {{ form_row(patientForm.Age, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_row(patientForm.Sexe, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_row(patientForm.Telephone, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_row(patientForm.CodePostal, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_row(patientForm.Ville, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_row(patientForm.Adresse, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_row(patientForm.Service, {'attr': {'class': 'form-control'}}) }}
+                        {% if is_granted('ROLE_ADMIN') %}
+                        <div class="text-center mt-3">
+                            <input type="submit" value="Modifier" class="form-control">
+                        </div>
+                        {% endif %}
+                        {{ form_end(patientForm) }}
+                    </div>
+                    <button onclick="window.location.href='/'" class="btn btn-outline-info">Dashboard</button>
+                </div>
+                <div class="col-sm-3"></div>
+            </div>
+        </div>
+        </form>
+    {% endif %}
+{% endblock %}

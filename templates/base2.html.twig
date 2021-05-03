@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="UTF-8">
+      <title>{% block title %} Welcome! {% endblock %}</title>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.0/main.min.css"
+            integrity="sha256-uq9PNlMzB+1h01Ij9cx7zeE2OR2pLAfRw3uUUOOPKdA=" crossorigin="anonymous">
+      <!--link href='https://bootswatch.com/4/minty/bootstrap.min.css' rel='stylesheet' /-->
+      <link href='{{ asset("../styles/bootstrap.css") }}' rel='stylesheet' />
+      <link href='https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.1/css/all.css' rel='stylesheet'>
+      <!--link href='https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.css' rel='stylesheet'-->
+
+
+      {% block stylesheets %}{% endblock %}
+  </head>
+
+  <body>
+  <br>
+      {% block body %}{% endblock %}
+      <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.0/main.min.js"
+              integrity="sha256-YS9kklqEaLYBFpFsHZhoRQna5D2+RSAi/3V4+fXi9qQ=" crossorigin="anonymous"></script>
+
+      {% block javascripts %}{% endblock %}
+  </body>
+
+
+
+</html>

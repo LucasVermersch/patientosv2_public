@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une chambre{% endblock %}
+
+{% block body %}
+    {% if app.user %}
+
+
+        {{ form_start(formChambre) }}
+        <form action=""  method="post">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6  ">
+                        <h1 class="titre">HOPITAL LILLE</h1>
+                        <div class="card p-3">
+                            {{ form_row(formChambre.NombreLit, {'attr': {'class': 'form-control'}}, {'fa' : 'fa-long-arrow-right'}) }}
+                            {{ form_row(formChambre.Service, {'attr': {'class': 'form-control'}}, {'fa' : 'fa-long-arrow-right'}) }}
+
+                            <div class="text-center mt-3">
+                                <input type="submit" value="Ajouter" class="btn btn-outline-info">
+                                <button onclick="window.location.href='/'" class="btn btn-outline-info">Dashboard</button>
+                            </div>
+                            {{ form_end(formChambre) }}
+                        </div>
+                    </div>
+                    <div class="col-sm-3"></div>
+                </div>
+            </div>
+        </form>
+    {% endif %}
+{% endblock %}

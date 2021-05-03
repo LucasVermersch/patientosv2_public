@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bonjour {{ utilisateur.Prenom }} !{% endblock %}
+
+{% block body %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    {% if not utilisateur.photoUrl %}
+        <img src="{{ asset('https://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png' ) }}" class="imageronde float-right mr-3" alt="../../public/uploads/https://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png">
+    {% else %}
+        <img src="{{ asset('/uploads/pp/'~utilisateur.photoUrl ) }}"  class="imageronde float-right mr-3" alt="../../public/uploads/{{ utilisateur.photoUrl }}">
+    {% endif %}
+    <p class="titre-grand">Information sur le rendez-vous</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10 div-blanche">
+                <div class="container">
+                    <div class="m-3">
+                        <h3 style="color: #000000">Rendez vous avec Dr. {{ rdv.utilisateur.nom }}</h3>
+                        <hr>
+                        <h4 style="color: #000000">Intitulé du rendez-vous : {{ rdv.title }}</h4>
+                        <h4 style="color: #000000">Descritpion du rendez-vous : {{ rdv.description }}</h4>
+                        <hr>
+                        <h4 style="color: #000000">Date du rendez vous : {{ rdv.start | date("d/m/Y") }}, de {{ rdv.start | date("H:i:s") }} à {{ rdv.start | date("H:i:s") }}</h4>
+                        <hr>
+                        {% if rdv.status == 0 %}
+                            <h4 style="color: #000000">Votre rendez vous est en cours de validation.</h4>
+                        {% elseif rdv.status == 1 %}
+                            <h4 style="color: #000000">Votre rendez vous a été refusé, pour plus d'informations consulter vos mails.</h4>
+                        {% elseif rdv.status == 2 %}
+                            <h4 style="color: #000000">Votre rendez vous a été validé, pour plus d'informations consulter vos mails.</h4>
+                        {% endif %}
+                        <br>
+                        {% if rdv.status !=1 %}
+                            <center>
+                                <a href="/accueil/removeRdv/{{ rdv.id }}">
+                                    <input class="btn btn-primary" type="button" id="buttonsupp" value="Annuler le rendez-vous">
+
+                                </a>
+
+                            </center>
+                        {% endif %}
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
+    <script src="{{ asset("scripts/rdv.js") }}"></script>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bonjour {{ utilisateur.Prenom }} !{% endblock %}
+
+{% block body %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{{ asset('styles/style.css') }}">
+    <p class="titre-grand">Selectionnez le rendez vous</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10 div-blanche">
+                <div class=" row justify-content-center" style="float:none;">
+                        {% for rdv in rdvs %}
+                                <div class="card col-4 m-2">
+                                    <p>{{ rdv.title }}</p>
+                                    <p>Patient : {{ rdv.patient.nom }} {{ rdv.patient.prenom }}</p>
+                                    <p>Le {{ rdv.start | date("d/m/Y")  }} à {{ rdv.start | date("H:i:s") }}</p>
+                                    <a class="btn btn-primary mx-auto mb-2" style="color:white;"  href="/rdv/admin/{{ rdv.id }}"> Administrer</a>
+                                </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
+    <script src="{{ asset("scripts/rdv.js") }}"></script>
+
+{% endblock %}

@@ -1,0 +1,231 @@
+.wrapper {
+    display: flex;
+    align-items: stretch;
+}
+
+#sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    overflow: auto;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background: #8DD7CF;
+
+}
+
+#sidebar2 {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    overflow: auto;
+    margin: 0;
+    padding: 0;
+    width: 100px;
+    background: #8DD7CF;
+
+}
+
+
+.boutonJolie{
+    width:10em;
+}
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.titre {
+    font-weight: bold;
+    color: #1AAE9F;
+    font-size: 40px;
+    text-align: center;
+}
+
+.titre-grand{
+    font-weight: bold;
+    color: #1AAE9F;
+    font-size: 6em;
+    text-align: center;
+    margin-bottom: 0.5em;
+}
+
+.name {
+
+    color: white;
+
+}
+
+.logo {
+    padding: 10px;
+    bottom: 0;
+}
+
+.taillelogo {
+    font-size: 2em;
+
+}
+
+#footer {
+    bottom: 0;
+    position: absolute;
+
+}
+
+#i {
+
+    font-size: 100px;
+    bottom: 0;
+    position: absolute;
+}
+.divfom {
+    border-radius: 45px;
+    background: #8dd7cf;
+}
+
+.div-blanche {
+    border-radius: 6px 6px 6px 6px;
+    -moz-border-radius: 6px 6px 6px 6px;
+    -webkit-border-radius: 6px 6px 6px 6px;
+    border: 2px solid #d1d1d1;
+    min-height: 35em;
+
+    background: #f8f8f8;
+}
+.div-blanche-rdv {
+    border-radius: 6px 6px 6px 6px;
+    -moz-border-radius: 6px 6px 6px 6px;
+    -webkit-border-radius: 6px 6px 6px 6px;
+    border: 2px solid #d1d1d1;
+    min-height: 4em;
+
+    background: #f8f8f8;
+}
+
+.div-blanche-petite{
+    border-radius: 6px 6px 6px 6px;
+    -moz-border-radius: 6px 6px 6px 6px;
+    -webkit-border-radius: 6px 6px 6px 6px;
+    border: 2px solid #d1d1d1;
+    margin-top: 0.5em;
+    min-height: 20em;
+
+    background: #f8f8f8;
+}
+
+
+
+.imageronde{
+    width:7em;
+    height:7em;
+    clip-path:ellipse(50% 50%);
+    border-radius: 200px 200px 200px 200px;
+    -moz-border-radius: 200px 200px 200px 200px;
+    -webkit-border-radius: 200px 200px 200px 200px;
+    border: 2.5px solid #8dd7cf;
+    position: relative;
+    bottom:3.32em;
+}
+
+.pp {
+    width: 100px;
+    height: 100px;
+}
+
+.btnnn {
+    font-size: 1.6em;
+    max-width: 25rem;
+
+}
+
+@media screen and (max-height: 700px) {
+    .pp {
+        width: 50px;
+        height: 50px;
+    }
+
+    .btnn {
+        padding: .25rem .5rem;
+        font-size: .875rem;
+        line-height: 1.5;
+        border-radius: .2rem
+    }
+    .btnnn {
+        font-size: 1.2em;
+    }
+    .titre {
+        text-align: center;
+        font-weight: bold;
+        color: #1AAE9F;
+        font-size: 20px;
+    }
+}
+@media screen and (max-height: 900px) {
+
+    .btnnn {
+        font-size: 1.3em;
+    }
+}
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+@media screen and (max-height: 500px) {
+    .pp {
+        width: 0px;
+        height: 0px;
+    }
+
+    .btnn {
+        padding: .25rem .5rem;
+        font-size: .875rem;
+        line-height: 1.5;
+        border-radius: .2rem
+    }
+    .btnnn {
+        font-size: 1em;
+    }
+    .titre {
+        font-weight: bold;
+        color: #1AAE9F;
+        font-size: 20px;
+        text-align: center;
+    }
+}
+
+
+.button-app {
+    background-color: #1AAE9F;
+    border-radius: 42px;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 21px;
+    padding: 18px 41px;
+    text-decoration: none;
+}
+
+.button-app:hover {
+    background-color: #1AAE9F;
+
+}
+
+.button-app:active {
+    position: relative;
+    top: 1px;
+}
+
+
+a:link {
+    text-decoration: none;
+    color: black;
+}
+a{
+    text-decoration:none;
+    color:black;
+}
+a:hover{
+    text-decoration: none;
+    color:black;
+}
+
+

@@ -1,0 +1,68 @@
+security:
+    encoders:
+        App\Entity\Utilisateur:
+            algorithm: auto
+        App\Entity\Patient:
+            algorithm: auto
+
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        # used to reload user from session & other features (e.g. switch_user)
+        chain_provider:
+            chain:
+                providers: [app_user_provider,app_patient_provider]
+
+        app_user_provider:
+            entity:
+                class: App\Entity\Utilisateur
+                property: email
+
+        app_patient_provider:
+            entity:
+                class: App\Entity\Patient
+                property: email
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: true
+            lazy: true
+            provider: chain_provider
+            logout:
+                path: app_logout
+                target : app_login
+            guard:
+                authenticators:
+                    - App\Security\UtilisateurAuthenticator
+                # where to redirect after logout
+                # target: app_any_route
+
+            # activate different ways to authenticate
+            # https://symfony.com/doc/current/security.html#firewalls-authentication
+
+            # https://symfony.com/doc/current/security/impersonating_user.html
+            # switch_user: true
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+        - { path: ^/administrateur, roles: ROLE_SOIGNANT }
+        - { path: ^/voirChambre, roles: ROLE_SOIGNANT }
+        - { path: ^/voirLit, roles: ROLE_SOIGNANT }
+        - { path: ^/voirPatient, roles: ROLE_SOIGNANT }
+        - { path: ^/sejourAjouter, roles: ROLE_ADMIN }
+        - { path: ^/purge, roles: ROLE_ADMIN }
+        - { path: ^/nouveauPatient, roles: ROLE_ADMIN }
+        - { path: ^/creerService, roles: ROLE_SUPERADMIN }
+        - { path: ^/inscriptionSoignant, roles: ROLE_SUPERADMIN }
+        - { path: ^/creerLit, roles: ROLE_SUPERADMIN }
+        - { path: ^/creerChambre, roles: ROLE_SUPERADMIN }
+        - { path: ^/accueil, roles: ROLE_USER }
+        - { path: ^/cal, roles: ROLE_USER }
+
+    role_hierarchy:
+        ROLE_PATIENT : ROLE_USER
+        ROLE_SOIGNANT : ROLE_PATIENT
+        ROLE_ADMIN: ROLE_SOIGNANT
+        ROLE_SUPERADMIN : ROLE_ADMIN

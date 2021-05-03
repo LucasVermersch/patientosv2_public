@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un lit{% endblock %}
+
+{% block body %}
+    {% if app.user %}
+
+
+        {{ form_start(formLit) }}
+        <form action=""  method="post">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6  ">
+                        <h1 class="titre">HOPITAL LILLE</h1>
+                        <div class="card p-3">
+                            {{ form_row(formLit.Chambre, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_row(formLit.EtatDuLit, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_row(formLit.Occupation, {'attr': {'class': 'form-control'}}) }}
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <div class="text-center mt-3">
+                                    <input type="submit" value="Modifier" class="form-control">
+                                </div>
+                            {% endif %}
+                            {{ form_end(formLit) }}
+                        </div>
+                        <button onclick="window.location.href='/'" class="btn btn-outline-info">Dashboard</button>
+                    </div>
+                    <div class="col-sm-3"></div>
+                </div>
+            </div>
+        </form>
+    {% endif %}
+{% endblock %}

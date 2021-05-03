@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bonjour {{ utilisateur.Prenom }} !{% endblock %}
+
+{% block body %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    {% if not utilisateur.photoUrl %}
+        <img src="{{ asset('https://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png' ) }}" class="imageronde float-right mr-3" alt="../../public/uploads/https://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png">
+    {% else %}
+        <img src="{{ asset('/uploads/pp/'~utilisateur.photoUrl ) }}"  class="imageronde float-right mr-3" alt="../../public/uploads/{{ utilisateur.photoUrl }}">
+    {% endif %}
+    <p class="titre-grand">Prendre un rendez vous</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10 div-blanche">
+                <div class="container ">
+                    <div id="recherche" class="text-center">
+                        <form action="" method="post">
+                            <label for="spe">Nom du médecin</label>
+                            <br>
+                            <input type="text" id="nom" name="nom" class=" form-control w-50 mx-auto" placeholder="Nom du médecin"> <br>
+                            <input type="submit" name="submitsearchspe" class="mx-auto btn btn-primary" value="Rechercher">
+                            <hr>
+                        </form>
+                    </div>
+                    <div class="row  justify-content-center ">
+                        {% for medecin in medecins %}
+
+                            <div class="card col-3 m-2" style="height: 10em">
+                                <p class="mt-1 mx-auto">Dr. {{ medecin.nom }} {{ medecin.prenom }}</p>
+                                <p class=" mx-auto">Spécialité : {{ medecin.service.nomService }}</p>
+                                <a href="/accueil/priserdv/{{ medecin.id }}" class="btn btn-primary" >Prendre rendez-vous </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
+    <script src="{{ asset("scripts/rdv.js") }}"></script>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bonjour {{ utilisateur.Prenom }} !{% endblock %}
+
+{% block body %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <p class="titre-grand">Information sur le rendez-vous</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10 div-blanche">
+                <div class="container">
+                    <div class="m-3">
+                        {% if supp %}
+                            <p>Le rendez vous a été supprimé</p>
+                        {% else %}
+                            <p>Le rendez vous n'a pas été supprimé veuillez réessayer</p>
+                        {% endif %}
+                        <center>
+                            <a href="/">
+                                <input class="btn btn-primary" type="button" id="buttonsupp" value="Retour à l'accueil">
+                            </a>
+                        </center>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
+    <script src="{{ asset("scripts/rdv.js") }}"></script>
+
+{% endblock %}

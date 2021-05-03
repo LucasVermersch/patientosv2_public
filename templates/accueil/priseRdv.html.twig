@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bonjour {{ utilisateur.Prenom }} !{% endblock %}
+
+{% block body %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    {% if not utilisateur.photoUrl %}
+        <img src="{{ asset('https://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png' ) }}" class="imageronde float-right mr-3" alt="../../public/uploads/https://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png">
+    {% else %}
+        <img src="{{ asset('/uploads/pp/'~utilisateur.photoUrl ) }}"  class="imageronde float-right mr-3" alt="../../public/uploads/{{ utilisateur.photoUrl }}">
+    {% endif %}
+    <p class="titre-grand">Prendre un rendez vous</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10 div-blanche">
+                <div class="container ">
+                    <form action="" method="post">
+                        <p>Veuillez séléctionner un jour :</p>
+                        <input type="datetime-local" value="date" name="time" class="form-control">
+                        <br>
+                        <p>Séléctionner le type de rendez vous :</p>
+                        <select name="typeRdv" class="form-control">
+                            {% for key,h in medecin.horraires %}
+                                <option value="{{ h |date() }}">{{ key }}</option>
+                            {% endfor %}
+                        </select>
+                        <br>
+                        {% if deja == 1 %}
+                            <br>
+                            <h5>Veuillez choisir un autre horaire.</h5>
+                        {% endif %}
+
+                        <input type="submit" value="Nouveau RDV" class="btn btn-primary">
+                    </form>
+                </div>
+                </div>
+            </div>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
+    <script src="{{ asset("scripts/rdv.js") }}"></script>
+
+{% endblock %}

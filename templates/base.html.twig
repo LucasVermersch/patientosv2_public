@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% block stylesheets %}
+        <link rel="stylesheet"
+              href="{{ asset("../styles/bootstrap.css") }}" crossorigin="anonymous" >
+        <link rel="stylesheet" href="{{ asset("./styles/style.css") }}">
+        <script src="{{ asset("https://kit.fontawesome.com/8f0edd7503.js") }}" crossorigin="anonymous"></script>
+    {% endblock %}
+</head>
+<body>
+{% if is_granted('ROLE_PATIENT') and not is_granted('ROLE_SOIGNANT') %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse mx-auto" id="navbarTogglerDemo03">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0 mx-auto">
+                <li class="nav-item active align-content-center">
+                <a class="nav-link " href="/accueil/rdv"><h4>Prendre un rendez-vous</h4></a>
+                </li>
+                <li class="nav-item active  align-content-center">
+                    <a class="nav-link " href="/"><h4>Accueil</h4></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+{% endif %}
+
+{% block body %}
+{% endblock %}
+{% if is_granted('ROLE_SOIGNANT') %}
+<div id="bar1">
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar">
+
+            <div class="media">
+                <img src="{{ asset("default.png") }}"
+                     class="pp" style="width: 8em; height: 8em;" alt="...">
+            </div>
+
+            <div align="center">
+                <br/>
+                <div align="center" class="btnn">
+
+                    <a href="/voirPatient" ><button type="button" class="btn  btnn btn-light boutonJolie">Voir la liste patients</button></a>
+                    <br/><br/>
+                    <a href="/voirChambre" ><button type="button" class="btn  btnn btn-light boutonJolie">Voir la liste chambres</button></a>
+                    <br/><br/>
+                    <a href="/voirLit" ><button type="button" class="btn  btnn btn-light boutonJolie">Voir la liste des lits</button></a>
+                    <br/><br/>
+                    {% if not is_granted('ROLE_ADMIN') %}
+                    <a href="/horraire/add" ><button type="button" class="btn  btnn btn-light boutonJolie">Ajouter des horraires</button></a>
+                    <br/><br/>
+                    <a href="/cal/{{ medecin.id }}" ><button type="button" class="btn  btnn btn-light boutonJolie">Voir son calendrier</button></a>
+                    <br/><br/>
+                    {% endif %}
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="/nouveauPatient" ><button type="button" class="btn  btnn btn-light boutonJolie">Ajouter un patient</button></a>
+                    <br/><br/>
+                        <a href="/sejourAjouter" ><button type="button" class="btn  btnn btn-light boutonJolie">Ajouter séjour</button></a>
+                        <br/><br/>
+                        <a href="/rdv/list" ><button type="button" class="btn  btnn btn-light boutonJolie">Voir les rendez-vous</button></a>
+                        <br/><br/>
+
+                    {% if is_granted('ROLE_SUPERADMIN') %}
+                        <a href="/inscriptionSoignant" ><button type="button" class="btn btnn btn-light boutonJolie">Ajouter un utilisateur</button></a>
+                        <br/><br/>
+                        <a href="/creerLit" ><button type="button" class="btn  btnn  btn-light boutonJolie">Ajouter un Lit</button></a>
+                        <br/><br/>
+                        <a href="/creerChambre" ><button type="button" class="btn  btnn  btn-light boutonJolie">Ajouter une Chambre</button></a>
+                        <br/><br/>
+                        <a href="/creerService" ><button type="button" class="btn  btnn  btn-light boutonJolie">Ajouter un service</button></a>
+                    {% endif %}
+                    {% else %}
+                    {% endif %}
+                </div>
+                <div align="center">
+                    <div class="logo taillelogo">
+                        <div class="container">
+                            <div class="row">
+                                <div class="container">
+                                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
+                                        <div class="col"><a style="color: black; text-decoration: none;  " href="/logout" ><i class="fas fa-sign-out-alt fa "></i></a></div>
+                                        <div class="col"><i style="color: black;" class="fas fa-cog fa "></i></div>
+                                        <div class="col"><a onclick="verif1();"><i style="color: black;" class="fas fa-chevron-left fa "></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+    </div>  </div>  </div>
+            <div id="bar2">
+                <div class="wrapper">
+                    <!-- Sidebar -->
+                    <nav id="sidebar2">
+                        <div align="center">
+                            <div class="name">
+                                <h3></h3>
+                            </div>
+                        </div>
+                        <br/><br/>
+                        <div align="center">
+                            <div align="center" class="btnnn">
+                                <a style="color: black; text-decoration: none;  " href="/voirPatient" ><i class="fas fa-book-medical "></i></a>
+                                <br/><br/>
+
+                                <a style="color: black; text-decoration: none;  " href="/voirChambre" ><i class="fas fa-hospital-user "></i></a>
+                                <br/><br/>
+                                <a style="color: black; text-decoration: none;  " href="/VoirLit" ><i class="fas fa-bed "></i></a>
+                                <br/><br/>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <a style="color: black; text-decoration: none;  " href="/nouveauPatient" ><i class="fas fa-user-injured "></i></a>
+                                <br/><br/>
+
+                                <a style="color: black; text-decoration: none;  " href="/sejourAjouter" > <i class="fas fa-hand-holding-medical"></i></a>
+                                    <br/><br/>
+                                {% elseif is_granted('ROLE_SUPERADMIN') %}
+
+                                    <a style="color: black; text-decoration: none;  " href="/creerLit" ><i class="fas fa-procedures"></i></a>
+                                    <br/><br/>
+                                    <a style="color: black; text-decoration: none;  " href="/inscriptionSoignant" ><i class="fas fa-user-md"></i></a>
+                                <br/><br/>
+                                    <a style="color: black; text-decoration: none;  " href="/creerChambre" ><i class="fas fa-clinic-medical "></i><br/><br/></a> {% else %}
+                                {% endif %}
+                                <a style="color: black; text-decoration: none;  " href="/logout" ><i class="fas fa-sign-out-alt fa "></i></a> <br/><br/>
+                                <i style="color: black;" class="fas fa-cog fa "></i> <br/><br/>
+
+                                    <a onclick="verif1();"><i class="fas fa-chevron-right" style="color: black"></i></a>
+                                </div>
+                        </div>
+
+        {% endif %}
+
+
+
+
+                            {% block javascripts %}
+                                <script src="{{ asset("https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js") }}"></script>
+                                <script src="{{ asset("scripts/bootstrap.bundle.min.js") }}"
+                                        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+                                        crossorigin="anonymous"></script>
+                                <script src="{{ asset("https://use.fontawesome.com/9172efae86.js") }}"></script>
+                                <script src="{{ asset("scripts/script.js") }}"></script>
+                            {% endblock %}
+
+        </body>
+</html>

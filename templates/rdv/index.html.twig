@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bonjour {{ utilisateur.Prenom }} !{% endblock %}
+
+{% block body %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <p class="titre-grand">Selectionnez le medecin</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10 div-blanche">
+                <div class="container ">
+                    <div id="recherche" class="text-center">
+                        <form action="" method="post">
+                            <label for="spe"> Nom du médecin</label>
+                            <br>
+                            <input type="text" id="nom" name="nom" class=" form-control w-50 mx-auto" placeholder="Nom du médecin"> <br>
+                            <input type="submit" class="btn btn-primary" name="submitsearchspe" value="Rechercher">
+                        </form>
+
+                    </div>
+                    <div class="row justify-content-center">
+                        {% for medecin in medecins %}
+
+                            <div class="card col-3 m-2 text-center">
+                                <p>Dr.{{ medecin.nom }} {{ medecin.prenom }}</p>
+                                <a href="/cal/{{ medecin.id }}" class="btn btn-primary m-1"> Voir le calendrier du médecin</a>
+                                <a href="/rdv/list/{{ medecin.id }}" class="btn btn-primary m-1"> Voir les rendez-vous</a>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
+    <script src="{{ asset("scripts/rdv.js") }}"></script>
+
+{% endblock %}

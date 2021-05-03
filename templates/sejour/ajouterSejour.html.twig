@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une chambre{% endblock %}
+
+{% block body %}
+    {% if app.user %}
+
+
+        {{ form_start(sejourForm) }}
+        <form action=""  method="post">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6  ">
+                        <h1 class="titre">HOPITAL LILLE</h1>
+                        <div class="card p-3 ">
+                            {{ form_row(sejourForm.Patient, {'attr': {'class': 'form-control'}}, {'fa' : 'fa-long-arrow-right'}) }}
+                            {{ form_row(sejourForm.Service, {'attr': {'class': 'form-control'}}, {'fa' : 'fa-long-arrow-right'}) }}
+                            {{ form_row(sejourForm.DateEntree, {'attr': {'class': 'form-control'}}, {'fa' : 'fa-long-arrow-right'}) }}
+                            {{ form_row(sejourForm.DateSortie, {'attr': {'class': 'form-control'}}, {'fa' : 'fa-long-arrow-right'}) }}
+                            {{ form_start(formLitPatient) }}
+                            {{ form_row(formLitPatient.Lit, {'attr': {'class': 'form-control'}}, {'fa' : 'fa-long-arrow-right'}) }}
+                            {{ form_end(formLitPatient) }}
+                            <div class="text-center mt-3">
+                                {{ form_row(sejourForm.Valider, {'attr': {'class': 'btn btn-outline-info '}}) }}
+                            </div>
+                            {{ form_end(sejourForm) }}
+                        </div>
+
+                    </div>
+                    <div class="col-sm-3"></div>
+                </div>
+            </div>
+        </form>
+    {% endif %}
+{% endblock %}

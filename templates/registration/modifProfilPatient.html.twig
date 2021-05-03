@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification du profil{% endblock %}
+
+{% block body %}
+
+<form action=""  method="post">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-6  ">
+        <h1 class="titre">HOPITAL LILLE</h1>
+        <div class="card p-3">
+          {{ form_row(form.Age, {'attr': {'class': 'form-control'}}) }}
+          {{ form_row(form.Sexe, {'attr': {'class': 'form-control'}}) }}
+          {{ form_row(form.Adresse, {'attr': {'class': 'form-control'}}) }}
+          {{ form_row(form.Ville,{'attr': {'class': 'form-control'}}) }}
+          {{ form_row(form.CodePostal,{'attr': {'class': 'form-control'}}) }}
+          {{ form_row(form.Telephone , {'attr': {'class': 'form-control'}}) }}
+          <div class="text-center mt-3">
+            {{ form_row(form.Valider, {'attr': {'class': 'form-control btn btn-primary'} }) }}
+          </div>
+          {{ form_end(form) }}
+        </div>
+      </div>
+      <div class="col-sm-3"></div>
+    </div>
+  </div>
+</form>
+
+
+{% endblock %}

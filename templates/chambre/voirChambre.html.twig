@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    {% if app.user %}
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-8  ">
+                    <h1 class="titre">HOPITAL LILLE</h1>
+                    <div class="card p-3">
+                        <div class="col-sm-12 p-3 m-5">
+                            <form action="" method="post">
+                                <input type="text" name="Service" placeholder="Service">
+                                <input type="text" name="NombreLit" placeholder="NombreLit">
+                                <input type="submit" name="submit" value="Rechercher">
+                            </form>
+                        </div>
+                        <div class="row">
+                        {% for chambre in chambres %}
+                            <div  class=" col-sm-4 card p-3 m-5">
+                                <p class="h5" >{{ chambre.Service.NomService }}</p>
+                                <p class="h6" >Numéro chambre : {{ chambre.id }}</p>
+                                <p class="h6" >Service : {{ chambre.Service.NomService }} </p>
+                                <p class="h6">Nombre de lit(s): {{ chambre.NombreLit }} </p>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <button onclick="window.location.href='/voirChambre/{{ chambre.id }}'" class="form-control">Modifier</button>
+                                {% else %}
+                                    <button onclick="window.location.href='/voirChambre/{{ chambre.id }}'" class="form-control">Voir</button>
+
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                        <button onclick="window.location.href='/'" class="btn btn-outline-info">Dashboard</button>
+                    </div>
+                </div>
+                <div class="col-sm-3"></div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

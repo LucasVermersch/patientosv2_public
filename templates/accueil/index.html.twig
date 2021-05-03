@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bonjour {{ utilisateur.Prenom }} !{% endblock %}
+
+{% block body %}
+    <p class="titre-grand">MON ESPACE</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10 div-blanche">
+                {% if not utilisateur.photoUrl %}
+                    <img src="{{ asset('https://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png' ) }}" class="imageronde" alt="../../public/uploads/https://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png">
+                {% else %}
+                    <img src="{{ asset('/uploads/pp/'~utilisateur.photoUrl ) }}" class="imageronde" alt="../../public/uploads/{{ utilisateur.photoUrl }}">
+                {% endif %}
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-4 ">
+                            <h5>Mes infos</h5>
+                            <div class="div-blanche-petite p-1">
+                                <p><strong>Nom :</strong> {{ utilisateur.nom }}</p>
+                                <p><strong>Prenom :</strong> {{ utilisateur.prenom }}</p>
+                                <p><strong>Email :</strong> {{ utilisateur.email }}</p>
+                                {% if utilisateur.sexe is not null %}
+                                    <p><strong>Sexe :</strong>
+                                        {% if utilisateur.sexe == 1 %}
+                                        Homme
+                                        {% else %}
+                                            Femme
+                                        {% endif %}
+                                    </p>
+                                {% endif %}
+                                {% if utilisateur.age is not null %}
+                                    <p><strong>Age :</strong> {{ utilisateur.age }}</p>
+                                {% endif %}
+                                {% if utilisateur.adresse is not null %}
+                                    <p><strong>Adresse :</strong> {{ utilisateur.adresse }}</p>
+                                {% endif %}
+                                {% if utilisateur.ville is not null %}
+                                    <p><strong>Ville :</strong> {{ utilisateur.ville }}</p>
+                                {% endif %}
+                                {% if utilisateur.codePostal is not null %}
+                                    <p><strong>Code postal :</strong> {{ utilisateur.codePostal }}</p>
+                                {% endif %}
+                                {% if utilisateur.telephone is not null %}
+                                    <p><strong>Téléphone :</strong> {{ utilisateur.telephone }}</p>
+                                {% endif %}
+                            </div>
+                            <br>
+                            <button onclick="window.location.href='/modifProfil'" class="btn btn-outline-info">Modifier profil</button>
+                        </div>
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-4 ">
+                            <h5>Mes activités récentes</h5>
+                            <div class="div-blanche-petite " style="overflow-y: scroll; height:25em">
+                                {% for rdv in rdvs %}
+                                    <a href="/accueil/info/{{ rdv.id }}" >
+                                        <div class="div-blanche-rdv m-1" >
+                                            <div class=" container row">
+                                                <div class="col-9">
+                                                    {{ rdv.title }}
+                                                    <p>Rendez vous avec : Dr.{{ rdv.utilisateur.nom }}</p>
+                                                    <p>Le {{ rdv.start | date("d/m/Y")  }} à {{ rdv.start | date("H:i:s") }}</p>
+                                                </div>
+                                                <div class="col-3">
+                                                    {% if rdv.status == 0 %}
+                                                        <img class="mt-1 ml-2 " src="{{ asset("icons/refresh.svg") }}" alt="refresh" width="50em">
+                                                    {% elseif rdv.status == 1 %}
+                                                        <img class="mt-1 ml-2 " src="{{ asset("icons/close.svg") }}" alt="close" width="50em">
+                                                    {% elseif rdv.status == 2 %}
+                                                        <img class="mt-1 ml-2 " src="{{ asset("icons/checked.svg") }}" alt="checked" width="50em">
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="col-sm-1"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
+
+{% endblock %}
